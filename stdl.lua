@@ -23,12 +23,6 @@ GeometrySet2D = {}
 
 function Solid:Shift(x, y, z) end
 
-function SetDetailedGeometry(geometry) end
-
-function SetSymbolicGeometry(geometry) end
-
-function SetSymbolGeometry(geometry) end
-
 function FillArea(outerBoundary) end
 
 ---@alias Placement3D Placement3D
@@ -65,12 +59,70 @@ function Subtract(solid1, solid2) end
 ---@return Solid
 function Intersect(solid1, solid2) end
 
+--------- Класс ModelGeometry ---------
+
+---Модельная геометрия
+---@class ModelGeometry
+ModelGeometry = {}
+
+--------- Класс ParameterGroup ---------
+
+---Группа параметров стиля
+---@class ParameterGroup
+ParameterGroup = {}
+
+--------- Класс Parameter ---------
+
+---Параметр стиля объекта
+---@class Parameter
+Parameter = {}
+
+--------- Класс Port ---------
+
+---Порт
+---@class Port
+Port = {}
+
+---Устанавливает положение порта
+---@param placement Placement3D
+---@return Port
+function Port:SetPlacement(placement) end
+
+--------- Пространство имён Style ---------
+
+---Пространство имён
 Style = {}
 
+---Устанавливает детальную геометрию для стиля объекта
+---@param geometry ModelGeometry
+---@return nil
+function Style.SetDetailedGeometry(geometry) end
+
+---Устанавливает условную геометрию для стиля объекта
+---@param geometry ModelGeometry
+---@return nil
+function Style.SetSymbolicGeometry(geometry) end
+
+---Устанавливает символьную геометрию для стиля объекта
+---@param geometry ModelGeometry
+---@return nil
+function Style.SetSymbolGeometry(geometry) end
+
+---Возвращает таблицу значений параметров
 ---@return table
 function Style.GetParameterValues() end
 
----@return table
+---Возвращает группу параметров по имени
+---@param groupName string
+---@return ParameterGroup
 function Style.GetParameterGroup(groupName) end
 
-ModelGeometry = {}
+---Возвращает параметр по имени группы и параметра
+---@param groupName string
+---@param paramName string
+---@return Parameter
+function Style.GetParameter(groupName, paramName) end
+
+---@param name string
+---@return Port
+function Style.GetPort(name) end
